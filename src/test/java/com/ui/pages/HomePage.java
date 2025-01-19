@@ -36,7 +36,7 @@ public final class HomePage extends BrowserUtility {
 
 	public LoginPage goToLoginPage() {
 		
-		logger.info("Trying to perform click to go to sign page");
+		logger.info("Trying to perform click to go to sign page or login page");
 		clickOn(Sign_In_Link_Locator);
 		LoginPage loginpage = new LoginPage(getDriver());
 		return loginpage;
