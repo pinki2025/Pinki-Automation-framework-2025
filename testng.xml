@@ -8,7 +8,12 @@
 	  <parameter name="isHeadless" value="${isHeadless}"></parameter>
 	  
     <classes>
-		<class name="com.ui.tests.LoginTests3"/>
+		<class name="com.ui.tests.LoginTests"/>
+		<class name="com.ui.tests.InvalidCredLoginTest"/>
+		<class name="com.ui.tests.AddNewFirstAddressTest"/>
+		<class name="com.ui.tests.searchProductTest"/>
+		<class name="com.ui.tests.ProductCheckoutTest"/>
+		
     </classes>
   </test>
 </suite>

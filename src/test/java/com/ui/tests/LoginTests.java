@@ -1,24 +1,47 @@
 package com.ui.tests;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import static com.constants.Browser.*;
 
-import com.constants.Browser;
-import com.ui.pages.HomePage;
-import com.ui.pages.LoginPage;
-import com.utility.BrowserUtility;
-public class LoginTests {
+import static org.testng.Assert.*;
 
-	public static void main(String[] args) {
-		/*
-		WebDriver wd = new ChromeDriver();//Launch browser window or browser session
-		/HomePage homePage = new HomePage(browser.CHROME);
-		LoginPage loginpage =homePage.goToLoginPage();
-		loginpage.doLoginwith("yemiso2158@pokeline.com", "password");*/
+import org.apache.logging.log4j.Logger;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import com.ui.pojo.User;
+import com.utility.LoggerUtility;
+
+
+@Listeners(com.ui.listners.TestListeners.class)
+public class LoginTests extends TestBase {
+	
+	Logger logger =	LoggerUtility.getLogger(this.getClass());
+	
+
+	@Test(description = "Verifies with the valid user credential user able to login to the application",groups = {"e2e","sanity"},
+		dataProviderClass = com.ui.dataproviders.LoginDataProvider.class,dataProvider = "LoginTestDataProvider")
+	public void loginTest(User user){
 		
-		
-		
+		assertEquals(homePage.goToLoginPage().doLoginwith(user.getEmailAddress(),user.getPassword()).getUserName(),"Pinki Talukdar");
 	}
+	
+/*	@Test(description = "Verifies with the valid user credential user able to login to the application",groups = {"e2e","sanity"},
+
+			dataProviderClass = com.ui.dataproviders.LoginDataProvider.class,dataProvider = "LoginTestinCSVDataProvider")
+		public void loginCSVTest(User user){
+			
+			assertEquals(homePage.goToLoginPage().doLoginwith(user.getEmailAddress(),user.getPassword()).getUserName(),"Pinki Talukdar");
+		}
+	
+
+	@Test(description = "Verifies with the valid user credential user able to login to the application",groups = {"e2e","sanity"},
+			dataProviderClass = com.ui.dataproviders.LoginDataProvider.class,dataProvider = "LoginTestExcelDataProvider",
+	      retryAnalyzer = com.ui.listners.MyRetryAnalyzer.class)
+		public void loginExcelTest(User user){
+		
+		
+		assertEquals(homePage.goToLoginPage().doLoginwith(user.getEmailAddress(),user.getPassword()).getUserName(),"Pinki Talukdar1");
+		
+		
+		}*/
 
 }
